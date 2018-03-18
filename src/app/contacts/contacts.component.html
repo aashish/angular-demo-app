@@ -1,0 +1,49 @@
+<div class='container'>
+  <div class='row'>
+    <div class='contacts col-md-10 ml-auto mr-auto'>
+      <div class='row'>
+        <div class='col-md-10'>
+          <h1 class='heading'>
+            External Contacts
+          </h1>
+        </div>
+        <div class='col-md-2'>
+          <img src="/assets/collapse.png" width="36" />
+          <span>
+            Collapse
+          </span>
+        </div>
+      </div>
+      <p>
+        Select the client contacts associated with this offer.
+      </p>
+
+      <table class="table table-bordered table-striped table-curved">
+        <thead class='heading'>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Type</th>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Ext</th>
+            <th scope="col">Fax</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contact of contacts">
+            <td><input type='checkbox' name='checkbox' /></td>
+            <td>{{ contact.type }}</td>
+            <td>{{ contact.name }}</td>
+            <td>{{ contact.title }}</td>
+            <td>{{ contact.phone}}</td>
+            <td>{{ contact.ext }}</td>
+            <td>{{ contact.fax }}</td>
+            <td>{{ contact.email }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
