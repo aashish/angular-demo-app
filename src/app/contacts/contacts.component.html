@@ -8,17 +8,19 @@
           </h1>
         </div>
         <div class='col-md-2'>
-          <img src="/assets/collapse.png" width="36" />
-          <span>
-            Collapse
-          </span>
+          <a href="#" (click)="toggle()" class='collapse-link'>
+            <img src="/assets/collapse.png" width="36" />
+            <span>
+              Collapse
+            </span>
+          </a>
         </div>
       </div>
       <p>
         Select the client contacts associated with this offer.
       </p>
 
-      <table class="table table-bordered table-striped table-curved">
+      <table *ngIf="!is_visible" class="table table-bordered table-striped table-curved">
         <thead class='heading'>
           <tr>
             <th scope="col"></th>
@@ -32,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let contact of contacts">
+          <tr *ngFor="let contact of contacts; let i = index">
             <td><input type='checkbox' name='checkbox' /></td>
             <td>{{ contact.type }}</td>
             <td>{{ contact.name }}</td>
@@ -41,6 +43,37 @@
             <td>{{ contact.ext }}</td>
             <td>{{ contact.fax }}</td>
             <td>{{ contact.email }}</td>
+            <td>
+              <button class="btn btn-default btn-danger" type="button" (click)="delete(i)">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <td class="form-group">
+              <input class="form-control" type="text" #type="ngModel" required [(ngModel)]="contact.type" />
+            </td>
+            <td class="form-group">
+              <input class="form-control" type="text" #name="ngModel" [(ngModel)]="contact.name" />
+            </td>
+            <td class="form-group">
+              <input class="form-control" type="text" #title="ngModel" [(ngModel)]="contact.title" />
+            </td>
+            <td>
+              <input class="form-control" type="text" #phone="ngModel" [(ngModel)]="contact.phone" />
+            </td>
+            <td>
+              <input class="form-control" type="text" id="contacExt" [(ngModel)]="contact.ext" name="contactExt" />
+            </td>
+            <td>
+              <input class="form-control" type="text" id="contacFax" [(ngModel)]="contact.fax" name="contactFax" />
+            </td>
+            <td>
+              <input class="form-control" type="text" id="contacEmail" [(ngModel)]="contact.email" name="contactEmail" />
+            </td>
+            <td>
+              <button class="btn btn-default btn-primary" type="button" (click)="add()">Create</button>
+            </td>
           </tr>
         </tbody>
       </table>
